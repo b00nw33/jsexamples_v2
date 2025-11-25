@@ -8,7 +8,7 @@ function greetUser() {
     console.log(`Welcome to FSD, ${userName}!!!`);
   } else {
     console.log("We did not receive your name.");
-  }}
+  }
 }
 
 greetUser();

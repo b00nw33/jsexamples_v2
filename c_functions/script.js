@@ -1,4 +1,3 @@
-
 /* 
   ftnSalutation is a conventional JS function
   it returns an array of strings where each
@@ -6,8 +5,12 @@
   of the salutations to pupulate inputSelect
   found in index.html
 */
-function ftnSalutation(){
+function ftnSalutation() {
   //  implement your statement(s) here
+  // const arrSalutation = new Array("Mr.", "Mrs.", "Ms.");
+  // return arrSalutation;
+
+  return new Array("Mr.", "Mrs.", "Ms.", "Dr.");
 }
 
 /* 
@@ -17,8 +20,9 @@ function ftnSalutation(){
   calls it
 */
 const ftnGreeting = (salutation, user) => {
-    //  implement your statement(s) here
-}
+  //  implement your statement(s) here
+  return `Salutation: ${salutation}\nName: ${user}`;
+};
 
 /*
 Complete the challenge statement below
@@ -29,3 +33,8 @@ Hint:
 - validateInputs returns false if either choice or name is incorrectly filled
 - validateInputs returns true if both choice and name are correctly filled
 */
+
+
+const validateInputs = (choice, name="") => {
+  return choice.length>0 && name.length>0;
+};
