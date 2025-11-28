@@ -1,0 +1,17 @@
+{
+  "name": "f_expressions_operators",
+  "version": "1.0.0",
+  "description": "",
+  "main": "guess1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "prompt-sync": "^4.2.0",
+    "words-to-numbers": "^1.5.1"
+  }
+}
