@@ -89,8 +89,8 @@ class Field {
       console.log(row.join(""));
     })
   }
-  
-  // TODO: updateMove displays the move (key) entered by the user
+
+  // DONE: updateMove displays the move (key) entered by the user
   updateMove(m = "") {
     if (m === UP) return console.log(MSG_UP);            // Tell user he move up
     if (m === DOWN) return console.log(MSG_DOWN);        // Tell user he move down
@@ -103,58 +103,77 @@ class Field {
   /**
    * !! TODO: updateGame Assessment Challenge
    * @param {String} m accept the value of player's move (UP|DOWN|LEFT|RIGHT)
-  */
+   */
   updateGame(m = "") {
-    // capture the player's currX and currY postion first
-    // update the field to show the player's new position
-    // if the player x and y position is a HOLE
-    //     LOSE
-    //     process.exit();
-    // if player x and y postion is out of the map
-    //     LOSE
-    //     process.exit();
-    // if the player x and y position === x and y of the HAT (^)
-    //     WIN
-    //     process.exit();
-    // otherwise, move the player to the new x and y position based on move
+    // Capture current player position
+    let { x, y } = this.playerPosition;
+
+    // Compute new position based on move
+    let newX = x;
+    let newY = y;
+
+    if (m === UP) newX -= 1;
+    if (m === DOWN) newX += 1;
+    if (m === LEFT) newY -= 1;
+    if (m === RIGHT) newY += 1;
+
+    // Check if new position is out of bounds
+    if (newX < 0 || newX >= this.field.length || newY < 0 || newY >= this.field[0].length) {
+      console.log(OUT);
+      process.exit();
+    }
+
+    // Check what's at the new position
+    const cell = this.field[newX][newY];
+
+    if (cell === HOLE) {
+      console.log(LOSE);
+      process.exit();
+    }
+
+    if (cell === HAT) {
+      console.log(WIN);
+      process.exit();
+    }
+
+    // Valid move: update the field and player position
+    // Clear old player position (only if it wasn't the start or hat location)
+    if (this.field[x][y] === PLAYER) {
+      this.field[x][y] = GRASS;
+    }
+
+    // Set new player position
+    this.playerPosition = { x: newX, y: newY };
+    this.field[newX][newY] = PLAYER;
   }
 
 
-  //  DONE: start() a public method of the class to start the game
+  // DONE: start() a public method of the class to start the game
   start() {
     this.gamePlay = true;
     this.field[0][0] = PLAYER;
+    this.playerPosition = { x: 0, y: 0 }; // Initialize player position
     this.setHat();
-    // this.printField();
 
-    // track player's moves and update
     do {
       this.printField();
-      const input = prompt("\n[W]up [S]down [A]left [D]right [Q]exit: ");
+      const input = prompt("[W]up [S]down [A]left [D]right [Q]exit: ").toLowerCase();
 
-      switch (input.toLowerCase()) {
+      switch (input) {
         case UP:
-          this.updateMove(UP);
-          break;
         case DOWN:
-          this.updateMove(DOWN);
-          break;
         case LEFT:
-          this.updateMove(LEFT);
-          break;
         case RIGHT:
-          this.updateMove(RIGHT);
+          this.updateMove(input);
+          this.updateGame(input);
           break;
         case QUIT:
           this.updateMove(QUIT);
+          this.gamePlay = false;
           break;
         default:
-          this.updateMove();
+          this.updateMove(); // Handles invalid input
           break;
-      }
-
-      if (input === QUIT) {
-        this.gamePlay = false;
       }
     } while (this.gamePlay);
   }
