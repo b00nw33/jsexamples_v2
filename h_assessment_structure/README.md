@@ -2,6 +2,8 @@
 
 ## Codecademy Project: Find Your Hat  (3 hours)
 
+![Testing](test.gif)
+
 Put your JS skills to the test! Build the Find Your Hat game  from scratch.
 
 To demonstrate proficiency, the project must fulfill the following Technical Acceptance Criteria: 
@@ -15,5 +17,3 @@ And you should demonstrate the following non-technical criteria:
 - Demonstrate good use of the time allotted for the task.
 - Thrive on your own OR use help from others to make progress.
 - Describe the rationale of decisions without being asked for them.
-
-![Testing](test.gif)
