@@ -37,7 +37,7 @@ async function fetchColorsList() {
 
         // Using fetch, call for the 1st page of Data from the given url
         const response = await fetch("https://reqres.in/api/unknown", {
-            headers: { "x-api-key": "reqres_dee01a6317614db2b4e14590ea671996" }
+            headers: { "x-api-key": API_KEY }
         });
         const resp = await response.json();
         // console.log(resp);
@@ -51,7 +51,7 @@ async function fetchColorsList() {
         // Fetch the subsequent page(s) of Data (using a For Loop)
         for (let currentPage = page; currentPage <= totalPages; currentPage++) {
             const response = await fetch(`https://reqres.in/api/unknown?page=${currentPage}`, {
-                headers: { "x-api-key": "reqres_dee01a6317614db2b4e14590ea671996" }
+                headers: { "x-api-key": API_KEY }
             });
             const resp = await response.json();
             allColors.push(...resp.data);
